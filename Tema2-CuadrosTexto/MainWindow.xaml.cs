@@ -23,14 +23,33 @@ namespace Tema2_CuadrosTexto
         public MainWindow()
         {
             InitializeComponent();
-            infoNombreTextBlock.Visibility = Visibility.Hidden;
-            infoApellidoTextBlock.Visibility = Visibility.Hidden;
-            comprobadorEdadTextBlock.Visibility = Visibility.Hidden;
         }
 
-        private void edadTextBox_KeyUp(object sender, KeyEventArgs e)
+        private void infoTextBox_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Key == (Key)ConsoleKey.F2)
+            TextBox tb = (TextBox)sender;
+            if (e.Key == Key.F1)
+            {
+                if (tb.Tag.ToString() == infoNombreTextBlock.Name)
+                {
+                    if (infoNombreTextBlock.Visibility == Visibility.Hidden)
+                        infoNombreTextBlock.Visibility = Visibility.Visible;
+                    else
+                        infoNombreTextBlock.Visibility = Visibility.Hidden;
+                }
+                else
+                {
+                    if (infoApellidoTextBlock.Visibility == Visibility.Hidden)
+                        infoApellidoTextBlock.Visibility = Visibility.Visible;
+                    else
+                        infoApellidoTextBlock.Visibility = Visibility.Hidden;
+                }
+            }
+        }
+        
+        private void edadTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.F2)
             {
                 if (int.TryParse(edadTextBox.Text, out _))
                     comprobadorEdadTextBlock.Visibility = Visibility.Hidden;
